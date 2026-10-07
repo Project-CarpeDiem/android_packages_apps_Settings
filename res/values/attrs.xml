@@ -224,4 +224,7 @@
         <attr name="iconEnd" format="reference" />
         <attr name="iconEndContentDescription" format="reference" />
     </declare-styleable>
+    <declare-styleable name="WallpaperView">
+        <attr name="blurred" format="boolean" />
+    </declare-styleable>
 </resources>

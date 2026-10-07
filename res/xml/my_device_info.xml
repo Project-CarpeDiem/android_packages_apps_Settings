@@ -27,6 +27,21 @@
         android:selectable="false"
         settings:isPreferenceVisible="false"/>
 
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="banner_logo"
+        android:layout="@layout/max_banner"
+        android:selectable="false"/>
+
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="my_device_sw_header"
+        android:layout="@layout/about_device_info_sw"
+        android:selectable="false"/>
+
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="my_device_hw_header"
+        android:layout="@layout/about_device_info_hw"
+        android:selectable="false"/>
+
     <PreferenceCategory
         android:key="basic_info_category"
         android:selectable="false"
