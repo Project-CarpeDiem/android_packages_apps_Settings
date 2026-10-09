@@ -55,8 +55,10 @@ object DeviceInfoUtil {
             if (chargeFull > 0) {
                 "${chargeFull} mAh"
             } else {
-                val capacity = intent?.getIntExtra(android.os.BatteryManager.EXTRA_CAPACITY, -1)
-                if (capacity != null && capacity > 0) "${capacity}%" else "--"
+                try {
+                    val mah = com.android.internal.os.PowerProfile(context).batteryCapacity
+                    if (mah > 0) "${mah.toInt()} mAh" else "--"
+                } catch (e: Exception) { "--" }
             }
         } catch (e: Exception) {
             "--"
