@@ -33,6 +33,7 @@
         android:id="@+id/search_bar_blur"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/search_bar_blur_background"
         app:blurOverlayColor="@color/search_bar_blur_overlay">
 
         <Toolbar
@@ -53,7 +54,7 @@
                 android:paddingStart="12dp"
                 android:layout_gravity="start"
                 android:textSize="18sp"
-                android:textColor="@color/top_level_preference_text_color_primary"
+                android:textColor="?android:attr/textColorPrimary"
                 android:text="@string/search_homepage"/>
         </Toolbar>
     </eightbitlab.com.blurview.BlurView>
