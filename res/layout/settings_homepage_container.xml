@@ -22,17 +22,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/blur_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/main_content_scrollable_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.android.settings.widget.HomepageAppBarScrollingViewBehavior">
+        android:layout_marginTop="-8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/search_bar_bottom_reserved_space">
 
         <LinearLayout
             android:id="@+id/homepage_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-8dp"
             android:orientation="vertical">
 
             <FrameLayout
@@ -57,27 +63,31 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    </eightbitlab.com.blurview.BlurTarget>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp"
+        android:layout_gravity="bottom"
         android:touchscreenBlocksFocus="false"
-        android:keyboardNavigationCluster="false">
-        <LinearLayout
+        android:keyboardNavigationCluster="false"
+        android:elevation="0dp"
+        app:elevation="0dp"
+        android:background="@android:color/transparent">
+
+        <FrameLayout
             android:id="@+id/app_bar_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:paddingTop="@dimen/search_bar_container_top_padding"
             android:paddingBottom="@dimen/settingslib_expressive_space_extrasmall4"
             android:paddingStart="?android:attr/listPreferredItemPaddingStart"
             android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-            android:background="?android:attr/colorBackground">
+            android:background="@android:color/transparent">
 
             <include layout="@layout/search_bar"/>
 
-        </LinearLayout>
+        </FrameLayout>
     </com.google.android.material.appbar.AppBarLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

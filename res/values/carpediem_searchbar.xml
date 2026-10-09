@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Search bar values ported from RisingOS Settings (seventeen). -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <dimen name="custom_search_bar_corner_radius">28dp</dimen>
+    <dimen name="custom_avatar_length">60dp</dimen>
+    <dimen name="search_bar_bottom_margin">16dp</dimen>
+    <dimen name="search_bar_margin_start">21dp</dimen>
+    <dimen name="search_bar_margin_end">21dp</dimen>
+    <dimen name="search_bar_bottom_reserved_space">88dp</dimen>
+    <string name="search_homepage">Search</string>
+    <color name="search_bar_blur_overlay">#00FFFFFF</color>
+</resources>

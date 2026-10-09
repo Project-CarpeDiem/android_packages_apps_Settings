@@ -76,6 +76,7 @@ android_library {
         "androidx.slice_slice-core",
         "androidx.slice_slice-view",
         "androidx.window_window-java",
+        "blurview",
         "gson",
         "guava",
 
@@ -231,4 +232,9 @@ android_library_import {
 filegroup {
     name: "Settings_proguard_flags",
     srcs: ["proguard.flags"],
+}
+
+android_library_import {
+    name: "blurview",
+    aars: ["libs/BlurView-3.2.0.aar"],
 }

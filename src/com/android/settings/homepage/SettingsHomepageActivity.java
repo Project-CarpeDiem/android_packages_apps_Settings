@@ -38,14 +38,20 @@ import android.os.Bundle;
 import android.os.Process;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.FeatureFlagUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewOutlineProvider;
+import android.view.Window;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
+import eightbitlab.com.blurview.BlurTarget;
+import eightbitlab.com.blurview.BlurView;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.core.graphics.Insets;
@@ -262,6 +268,7 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         mLoadedListeners = new ArraySet<>();
 
         initSearchBarView();
+        initSearchBarBlur();
 
         getLifecycle().addObserver(new HideNonSystemOverlayMixin(this));
         mCategoryMixin = new CategoryMixin(this);
@@ -415,6 +422,32 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         FeatureFactory.getFeatureFactory().getSearchFeatureProvider()
                 .initSearchToolbar(this /* activity */, toolbar,
                         SettingsEnums.SETTINGS_HOMEPAGE);
+    }
+
+    private void initSearchBarBlur() {
+        final BlurView blurView = findViewById(R.id.search_bar_blur);
+        final BlurTarget blurTarget = findViewById(R.id.blur_target);
+        if (blurView == null || blurTarget == null) {
+            return;
+        }
+
+        // Defer setup until after the first layout pass so the target has real dimensions;
+        // calling setupWith() before that yields a blank/black blur.
+        blurTarget.post(() -> {
+            if (isFinishing() || isDestroyed()) {
+                return;
+            }
+            final float radius = 12f;
+            final Window window = getWindow();
+            final Drawable windowBackground = window.getDecorView().getBackground();
+
+            blurView.setupWith(blurTarget)
+                    .setFrameClearDrawable(windowBackground)
+                    .setBlurRadius(radius);
+            blurView.setOverlayColor(getColor(R.color.search_bar_blur_overlay));
+            blurView.setOutlineProvider(ViewOutlineProvider.BACKGROUND);
+            blurView.setClipToOutline(true);
+        });
     }
 
     private void updateHomepageUI() {
