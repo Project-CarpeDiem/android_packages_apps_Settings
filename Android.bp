@@ -57,6 +57,8 @@ android_library {
         "src/**/*.kt",
         "Ornatus/src/**/*.java",
         "Ornatus/src/**/*.kt",
+        "VendorSupport/src/**/*.java",
+        "VendorSupport/src/**/*.kt",
     ],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",
