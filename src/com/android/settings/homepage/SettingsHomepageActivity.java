@@ -74,7 +74,6 @@ import androidx.window.java.embedding.SplitControllerCallbackAdapter;
 
 import com.android.settings.PccAwareUidComparator;
 import com.android.settings.R;
-import com.android.settings.Settings;
 import com.android.settings.SettingsActivity;
 import com.android.settings.SettingsApplication;
 import com.android.settings.activityembedding.ActivityEmbeddingRulesController;
@@ -730,7 +729,7 @@ public class SettingsHomepageActivity extends FragmentActivity implements
                 SplitRule.FinishBehavior.ALWAYS,
                 true /* clearTop */);
         ActivityEmbeddingRulesController.registerTwoPanePairRule(this,
-                new ComponentName(getApplicationContext(), Settings.class),
+                new ComponentName(getApplicationContext(), com.android.settings.Settings.class),
                 targetComponentName,
                 targetIntent.getAction(),
                 SplitRule.FinishBehavior.ALWAYS,
