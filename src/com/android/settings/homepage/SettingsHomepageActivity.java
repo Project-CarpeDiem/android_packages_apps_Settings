@@ -37,8 +37,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Process;
 import android.os.UserHandle;
+import android.os.Build;
+import android.os.SystemProperties;
 import android.os.UserManager;
 import android.graphics.drawable.Drawable;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.FeatureFlagUtils;
@@ -49,6 +52,7 @@ import android.view.Window;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import eightbitlab.com.blurview.BlurTarget;
 import eightbitlab.com.blurview.BlurView;
@@ -89,6 +93,8 @@ import com.android.settingslib.widget.SettingsThemeHelper;
 import com.google.android.setupcompat.util.WizardManagerHelper;
 
 import java.net.URISyntaxException;
+import java.util.Calendar;
+import java.util.Random;
 import java.util.List;
 import java.util.Set;
 
@@ -268,6 +274,8 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         mLoadedListeners = new ArraySet<>();
 
         initSearchBarView();
+        initDashboardMessages();
+        initDeviceCard();
         initSearchBarBlur();
 
         getLifecycle().addObserver(new HideNonSystemOverlayMixin(this));
@@ -439,6 +447,95 @@ public class SettingsHomepageActivity extends FragmentActivity implements
             blurView.setOutlineProvider(ViewOutlineProvider.BACKGROUND);
             blurView.setClipToOutline(true);
         });
+    }
+
+    private void initDashboardMessages() {
+        boolean showDashboardMessages = Settings.System.getInt(
+                getContentResolver(), "show_contextual_dashboard_messages", 1) != 0;
+
+        final View root = findViewById(R.id.settings_homepage_container);
+        final TextView textView = root.findViewById(R.id.user_title);
+        final TextView homepageTitle = root.findViewById(R.id.homepage_title);
+        if (textView == null || homepageTitle == null) {
+            return;
+        }
+
+        if (!showDashboardMessages) {
+            textView.setVisibility(View.VISIBLE);
+            textView.setText(R.string.settings_label);
+            homepageTitle.setVisibility(View.GONE);
+            return;
+        }
+
+        String[] morningMsg = getResources().getStringArray(R.array.dashboard_morning);
+        String[] morningMsgGreet = getResources().getStringArray(R.array.dashboard_morning_greetings);
+        String[] msgNight = getResources().getStringArray(R.array.dashboard_night);
+        String[] msgearlyNight = getResources().getStringArray(R.array.dashboard_early_night);
+        String[] msgNoon = getResources().getStringArray(R.array.dashboard_noon);
+        String[] msgMN = getResources().getStringArray(R.array.dashboard_midnight);
+        String[] msgRandom = getResources().getStringArray(R.array.dashboard_random);
+        String[] msgRandomGreet = getResources().getStringArray(R.array.dashboard_random_greetings);
+
+        String greetingsEN = getResources().getString(R.string.dashboard_early_night_greeting1);
+        String greetingsN = getResources().getString(R.string.dashboard_night_greetings1);
+        String greetingsNoon = getResources().getString(R.string.dashboard_noon_greeting1);
+
+        switch (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+            case 5: case 6: case 7: case 8: case 9: case 10: {
+                Random gen = new Random();
+                textView.setText(morningMsgGreet[gen.nextInt(morningMsgGreet.length - 1)] + " " + getOwnerName() + ",");
+                homepageTitle.setText(morningMsg[gen.nextInt(morningMsg.length - 1)]);
+                break;
+            }
+            case 11: case 12: case 13: case 14: case 15: {
+                Random gen = new Random();
+                textView.setText(msgRandom[gen.nextInt(msgRandom.length - 1)] + " " + getOwnerName() + ",");
+                homepageTitle.setText(msgRandomGreet[gen.nextInt(msgRandomGreet.length - 1)]);
+                break;
+            }
+            case 16: case 17: {
+                Random gen = new Random();
+                textView.setText(greetingsNoon + " " + getOwnerName() + ",");
+                homepageTitle.setText(msgNoon[gen.nextInt(msgNoon.length - 1)]);
+                break;
+            }
+            case 18: case 19: case 20: {
+                Random gen = new Random();
+                textView.setText(greetingsEN + " " + getOwnerName() + ",");
+                homepageTitle.setText(msgearlyNight[gen.nextInt(msgearlyNight.length - 1)]);
+                break;
+            }
+            case 21: case 22: case 23: case 0: {
+                Random gen = new Random();
+                textView.setText(greetingsN + " " + getOwnerName() + ",");
+                homepageTitle.setText(msgNight[gen.nextInt(msgNight.length - 1)]);
+                break;
+            }
+            case 1: case 2: case 3: case 4: {
+                Random gen = new Random();
+                textView.setText(msgRandom[new Random().nextInt(msgRandom.length - 1)] + " " + getOwnerName() + ",");
+                homepageTitle.setText(msgMN[new Random().nextInt(msgMN.length - 1)]);
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    private void initDeviceCard() {
+        final TextView deviceModel = findViewById(R.id.device_model_name);
+        if (deviceModel == null) {
+            return;
+        }
+        String marketName = SystemProperties.get("ro.product.marketname", "");
+        deviceModel.setText(!marketName.isEmpty() ? marketName : Build.MODEL);
+    }
+
+    private String getOwnerName() {
+        final UserManager userManager = getSystemService(UserManager.class);
+        final UserInfo userInfo = com.android.settings.Utils.getExistingUser(userManager,
+                UserHandle.of(UserHandle.myUserId()));
+        return userInfo.name != null ? userInfo.name : getString(R.string.default_user);
     }
 
     private void updateHomepageUI() {

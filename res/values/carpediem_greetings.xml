@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Time-based greeting strings, adapted from Project Infinity X. -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="dashboard_morning1">Start your day positively!</string>
+    <string name="dashboard_morning2">The Sun is up!</string>
+    <string name="dashboard_morning3">A nice morning</string>
+    <string name="dashboard_morning4">Another day to live!</string>
+    <string name="dashboard_morning5">A new day</string>
+    <string name="dashboard_morning_greeting1">Good morning</string>
+    <string name="dashboard_morning_greeting2">Good day</string>
+    <string name="dashboard_noon1">Live your life!</string>
+    <string name="dashboard_noon2">Enjoy the sunset</string>
+    <string name="dashboard_noon3">Welcome home</string>
+    <string name="dashboard_noon4">Enjoy the day!</string>
+    <string name="dashboard_noon5">Welcome back</string>
+    <string name="dashboard_noon_greeting1">Good afternoon</string>
+    <string name="dashboard_early_night1">The night is coming!</string>
+    <string name="dashboard_early_night2">Time for dinner!</string>
+    <string name="dashboard_early_night_greeting1">Good evening</string>
+    <string name="dashboard_night3">Sweet dreams!</string>
+    <string name="dashboard_night4">Time to sleep now!</string>
+    <string name="dashboard_night5">Sleep tight!</string>
+    <string name="dashboard_night_greetings1">Good night</string>
+    <string name="dashboard_midnight1">Enjoy the silence</string>
+    <string name="dashboard_midnight2">Seize the day!</string>
+    <string name="dashboard_midnight3">Get some sleep</string>
+    <string name="dashboard_midnight4">Take rest</string>
+    <string name="dashboard_midnight5">Sleeping late?</string>
+    <string name="dashboard_random1">Hey</string>
+    <string name="dashboard_random2">Hello</string>
+    <string name="dashboard_random3">Greetings</string>
+    <string name="dashboard_random4">Good day</string>
+    <string name="dashboard_random5">Welcome</string>
+    <string name="dashboard_random6">What\'s up</string>
+    <string name="dashboard_random_greetings1">Try to find some easter eggs!</string>
+    <string name="dashboard_random_greetings2">Carpe diem!</string>
+    <string name="dashboard_random_greetings3">Have you explored CarpeDiem?</string>
+    <string name="dashboard_random_greetings4">Enjoy your day!</string>
+    <string name="default_user">User</string>
+
+    <string-array name="dashboard_morning">
+        <item>@string/dashboard_morning1</item>
+        <item>@string/dashboard_morning2</item>
+        <item>@string/dashboard_morning3</item>
+        <item>@string/dashboard_morning4</item>
+        <item>@string/dashboard_morning5</item>
+    </string-array>
+    <string-array name="dashboard_morning_greetings">
+        <item>@string/dashboard_morning_greeting1</item>
+        <item>@string/dashboard_morning_greeting2</item>
+    </string-array>
+    <string-array name="dashboard_midnight">
+        <item>@string/dashboard_midnight1</item>
+        <item>@string/dashboard_midnight2</item>
+        <item>@string/dashboard_midnight4</item>
+        <item>@string/dashboard_midnight5</item>
+    </string-array>
+    <string-array name="dashboard_early_night">
+        <item>@string/dashboard_early_night1</item>
+        <item>@string/dashboard_early_night2</item>
+    </string-array>
+    <string-array name="dashboard_night">
+        <item>@string/dashboard_night3</item>
+        <item>@string/dashboard_night4</item>
+        <item>@string/dashboard_night5</item>
+    </string-array>
+    <string-array name="dashboard_noon">
+        <item>@string/dashboard_noon1</item>
+        <item>@string/dashboard_noon2</item>
+        <item>@string/dashboard_noon3</item>
+        <item>@string/dashboard_noon4</item>
+        <item>@string/dashboard_noon5</item>
+    </string-array>
+    <string-array name="dashboard_random">
+        <item>@string/dashboard_random1</item>
+        <item>@string/dashboard_random2</item>
+        <item>@string/dashboard_random3</item>
+        <item>@string/dashboard_random4</item>
+        <item>@string/dashboard_random5</item>
+        <item>@string/dashboard_random6</item>
+    </string-array>
+    <string-array name="dashboard_random_greetings">
+        <item>@string/dashboard_random_greetings1</item>
+        <item>@string/dashboard_random_greetings2</item>
+        <item>@string/dashboard_random_greetings3</item>
+        <item>@string/dashboard_random_greetings4</item>
+    </string-array>
+</resources>
