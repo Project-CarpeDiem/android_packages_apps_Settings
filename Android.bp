@@ -119,6 +119,9 @@ android_library {
         "aconfig_settings_flags_lib",
         "accessibility_settings_flags_lib",
         "contextualcards",
+        "tensorflow-lite",
+        "tensorflow-lite-api",
+        "tensorflow-lite-support-api",
         "development_settings_flag_lib",
         "factory_reset_flags_lib",
         "settings-protos-lite",
@@ -248,4 +251,19 @@ filegroup {
 android_library_import {
     name: "blurview",
     aars: ["libs/BlurView-3.2.0.aar"],
+}
+
+android_library_import {
+    name: "tensorflow-lite",
+    aars: ["libs/tensorflow-lite-2.13.0.aar"],
+}
+
+android_library_import {
+    name: "tensorflow-lite-support-api",
+    aars: ["libs/tensorflow-lite-support-api-0.4.4.aar"],
+}
+
+android_library_import {
+    name: "tensorflow-lite-api",
+    aars: ["libs/tensorflow-lite-api-2.13.0.aar"],
 }
