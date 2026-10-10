@@ -47,7 +47,7 @@ class LineageVersionDetailPreference :
         get() = R.string.os_firmware_version_purpose
 
     override val title: Int
-        get() = org.lineageos.platform.internal.R.string.lineage_version
+        get() = R.string.carpediem_version
 
     override val indexable
         get() = false
@@ -65,8 +65,11 @@ class LineageVersionDetailPreference :
         preference.onPreferenceClickListener = this
     }
 
-    override fun getSummary(context: Context): CharSequence =
-        SystemProperties.get(LINEAGE_VERSION_PROPERTY, context.getString(R.string.unknown));
+    override fun getSummary(context: Context): CharSequence {
+        val carpediemVersion = SystemProperties.get(CARPEDIEM_VERSION_PROPERTY, "")
+        if (carpediemVersion.isNotEmpty()) return carpediemVersion
+        return SystemProperties.get(LINEAGE_VERSION_PROPERTY, context.getString(R.string.unknown));
+    }
 
     // return true swallows the click event, while return false will start the intent
     override fun onPreferenceClick(preference: Preference): Boolean {
@@ -105,6 +108,7 @@ class LineageVersionDetailPreference :
         const val ACTIVITY_TRIGGER_COUNT = 3
         const val DELAY_TIMER_MILLIS = 500L
 
+        const val CARPEDIEM_VERSION_PROPERTY: String = "ro.carpediem.version"
         const val LINEAGE_VERSION_PROPERTY: String = "ro.lineage.version"
 
         const val PLATLOGO_PACKAGE_NAME: String = "org.lineageos.lineageparts"

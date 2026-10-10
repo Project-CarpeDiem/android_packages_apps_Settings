@@ -42,6 +42,7 @@ public class LineageVersionDetailPreferenceController extends BasePreferenceCont
     private static final int DELAY_TIMER_MILLIS = 500;
     private static final int ACTIVITY_TRIGGER_COUNT = 3;
 
+    private static final String KEY_CARPEDIEM_VERSION_PROP = "ro.carpediem.version";
     private static final String KEY_LINEAGE_VERSION_PROP = "ro.lineage.version";
 
     private static final String PLATLOGO_PACKAGE_NAME = "org.lineageos.lineageparts";
@@ -77,6 +78,10 @@ public class LineageVersionDetailPreferenceController extends BasePreferenceCont
 
     @Override
     public CharSequence getSummary() {
+        final String carpediemVersion = SystemProperties.get(KEY_CARPEDIEM_VERSION_PROP, "");
+        if (!TextUtils.isEmpty(carpediemVersion)) {
+            return carpediemVersion;
+        }
         return SystemProperties.get(KEY_LINEAGE_VERSION_PROP,
                 mContext.getString(R.string.unknown));
     }
