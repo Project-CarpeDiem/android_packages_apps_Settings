@@ -97,6 +97,7 @@
     <dimen name="homepage_title_margin_horizontal">24dp</dimen>
     <dimen name="homepage_preference_min_height">88sp</dimen>
     <dimen name="homepage_preference_text_padding_start">16dp</dimen>
+    <dimen name="homepage_preference_text_padding_start_two_pane">24dp</dimen>
     <dimen name="homepage_preference_text_padding_start_expressive">12dp</dimen>
 
     <!-- SIM Dialog padding -->
