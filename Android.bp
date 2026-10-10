@@ -55,17 +55,25 @@ android_library {
     srcs: [
         "src/**/*.java",
         "src/**/*.kt",
+        "Ornatus/src/**/*.java",
+        "Ornatus/src/**/*.kt",
     ],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",
     ],
     javac_shard_size: 50,
     use_resource_processor: true,
+
+    aaptflags: ["--extra-packages com.carpediem.ornatus"],
+
     resource_dirs: [
         "res",
         "res-export", // for external usage
         "res-product",
+        "Ornatus/res",
     ],
+
+    asset_dirs: ["Ornatus/assets"],
     optional_uses_libs: ["com.android.extensions.appfunctions"],
     static_libs: [
         // External dependencies
@@ -77,6 +85,7 @@ android_library {
         "androidx.slice_slice-view",
         "androidx.window_window-java",
         "blurview",
+        "glide",
         "gson",
         "guava",
 
